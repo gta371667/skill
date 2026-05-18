@@ -1,8 +1,3 @@
----
-name: flutter-freezed-response
-description: Claude Code Skill — 自動從 API Response JSON 產生 Flutter Freezed 模型檔案
----
-
 # flutter-freezed-response
 
 > Claude Code Skill — 自動從 API Response JSON 產生 Flutter Freezed 模型檔案
@@ -16,8 +11,6 @@ description: Claude Code Skill — 自動從 API Response JSON 產生 Flutter Fr
 ---
 
 ## 安裝
-
-下載 `flutter-freezed-response.skill` 後，在 Claude Code 執行：
 
 ```bash
 claude skill install flutter-freezed-response.skill
@@ -33,17 +26,35 @@ claude skill install flutter-freezed-response.skill
 幫我從 assets/jsons/response/ 生成 Response 模型
 ```
 
-或是直接貼上 JSON 內容，Claude Code 會自動觸發此 Skill。
-
 ---
 
-## 輸出規則
+## 輸出結構
 
-| JSON 檔名 | 輸出檔名 | 輸出路徑 |
-|-----------|----------|----------|
-| `login.json` | `login_response.dart` | `lib/bean/response/login/` |
-| `toilet.json` | `toilet_response.dart` | `lib/bean/response/toilet/` |
-| `{name}.json` | `{name}_response.dart` | `lib/bean/response/{name}/` |
+每個 `{name}.json` 會產生一個 response 檔案，並自動更新 `lib/bean/bean.dart`：
+
+```
+lib/bean/
+├── bean.dart                          ← 統一 export 所有 response（自動維護）
+└── response/
+    ├── login/
+    │   └── login_response.dart
+    └── toilet/
+        └── toilet_response.dart
+```
+
+| 項目 | 路徑 |
+|------|------|
+| Response 檔案 | `lib/bean/response/{name}/{name}_response.dart` |
+| 共用 Export 檔 | `lib/bean/bean.dart` |
+
+### `bean.dart` 範例
+
+```dart
+export 'response/login/login_response.dart';
+export 'response/toilet/toilet_response.dart';
+```
+
+> 每新增一個 JSON，Skill 會自動在 `bean.dart` 補上對應的 export，不會覆蓋現有內容。
 
 ---
 
@@ -96,7 +107,7 @@ claude skill install flutter-freezed-response.skill
 
 > `isSuccess`、`message` 等 envelope 欄位會被忽略，只處理 `data` 內容。
 
-### 輸出：`lib/bean/response/login/login_response.dart`
+### 輸出 1：`lib/bean/response/login/login_response.dart`
 
 ```dart
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -132,6 +143,12 @@ sealed class LoginResponseAppVersion with _$LoginResponseAppVersion {
 }
 ```
 
+### 輸出 2：`lib/bean/bean.dart`（自動新增 export）
+
+```dart
+export 'response/login/login_response.dart';
+```
+
 ---
 
 ## 特殊情境處理
@@ -145,20 +162,20 @@ sealed class LoginResponseAppVersion with _$LoginResponseAppVersion {
 ```
 自動轉換：`DATA` → Dart 欄位 `data`，並加上 `@JsonKey(name: 'DATA')`。
 
-### key 含小寫但非 camelCase（如 `toilettype`）
+### key 含小寫但非 camelCase
 ```json
 { "toilettype": "男廁所", "pictype": "1" }
 ```
 自動轉換：`toilettype` → `toiletType`，`pictype` → `picType`。
 
 ### 多個 JSON 檔案
-一次給多個 JSON 檔，Skill 會全部處理完後只執行一次 `build_runner`。
+一次給多個 JSON 檔，Skill 會全部處理完後只執行一次 `build_runner`，並在 `bean.dart` 補上所有新增的 export。
 
 ---
 
 ## 執行 build_runner
 
-所有 `.dart` 檔案生成完畢後，Skill 會自動執行：
+所有檔案產生完畢後，Skill 會自動執行：
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
@@ -167,8 +184,6 @@ dart run build_runner build --delete-conflicting-outputs
 ---
 
 ## 需要的 Flutter 套件
-
-`pubspec.yaml` 請確認已加入：
 
 ```yaml
 dependencies:

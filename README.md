@@ -24,6 +24,7 @@
 claude skill install flutter-skill/flutter-bloc-skill/flutter-bloc.skill
 claude skill install flutter-skill/flutter-freezed-response/flutter-freezed-response.skill
 claude skill install flutter-skill/dart-comment/dart-comment.skill
+claude skill install flutter-project-knowledge-skill.skill
 ```
 
 ### 方式二：從 npm 安裝

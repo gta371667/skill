@@ -1,16 +1,18 @@
 {
   "name": "gta371667-skills",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Flutter and Dart CLI Skills Collection",
   "main": "index.js",
   "workspaces": [
     "flutter-skill/dart-comment",
     "flutter-skill/flutter-bloc-skill",
-    "flutter-skill/flutter-freezed-response"
+    "flutter-skill/flutter-freezed-response",
+    "flutter-skill/flutter-project-knowledge"
   ],
   "bin": {
     "dart-comment": "./flutter-skill/dart-comment/dart-comment.skill",
     "flutter-bloc-skill": "./flutter-skill/flutter-bloc-skill/flutter-bloc.skill",
-    "flutter-freezed-response": "./flutter-skill/flutter-freezed-response/flutter-freezed-response.skill"
+    "flutter-freezed-response": "./flutter-skill/flutter-freezed-response/flutter-freezed-response.skill",
+    "flutter-project-knowledge": "./flutter-skill/flutter-project-knowledge/flutter-project-knowledge.skill"
   }
 }
