@@ -1,3 +1,8 @@
+---
+name: flutter-bloc
+description: Claude Code Skill — 自動產生 Flutter BLoC 相關檔案，遵循專案統一規範
+---
+
 # flutter-bloc
 
 > Claude Code Skill — 自動產生 Flutter BLoC 相關檔案，遵循專案統一規範

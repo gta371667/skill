@@ -1,3 +1,9 @@
+---
+name: dart-comment
+description: Claude Code Skill — Dart/Flutter 中文註解規範，所有產生 Dart 程式碼的 Skill 都應參照此規範
+---
+
+
 # dart-comment
 
 > Claude Code Skill — Dart/Flutter 中文註解規範，所有產生 Dart 程式碼的 Skill 都應參照此規範
