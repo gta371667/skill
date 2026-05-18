@@ -1,14 +1,16 @@
 {
-  "name": "gta371667-skills-root",
-  "version": "1.0.0",
+  "name": "gta371667-skills",
+  "version": "1.0.1",
   "description": "Flutter and Dart CLI Skills Collection",
-  "private": true,
+  "main": "index.js",
   "workspaces": [
     "flutter-skill/dart-comment",
     "flutter-skill/flutter-bloc-skill",
     "flutter-skill/flutter-freezed-response"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "dart-comment": "./flutter-skill/dart-comment/index.js",
+    "flutter-bloc-skill": "./flutter-skill/flutter-bloc-skill/index.js",
+    "flutter-freezed-response": "./flutter-skill/flutter-freezed-response/index.js"
   }
 }

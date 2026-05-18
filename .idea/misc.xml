@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="StoredSessionsInfoStore">
+    <option name="sessions">
+      <list>
+        <SessionInfoState>
+          <option name="id" value="20260429-093508-5d99ebf5-1491-4bcc-aac3-e9c197c33b93" />
+          <option name="lastUpdateTimestamp" value="1777426508686" />
+          <option name="responseMode" value="Agent" />
+          <option name="title" value="New Agent Session" />
+          <option name="user" value="haokuo@gis.fcu.edu.tw" />
+        </SessionInfoState>
+      </list>
+    </option>
+  </component>
+</project>
