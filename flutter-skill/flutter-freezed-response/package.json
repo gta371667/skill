@@ -1,7 +1,0 @@
-{
-  "name": "flutter-freezed-response",
-  "version": "1.0.0",
-  "bin": {
-    "dart-comment": "./index.js"
-  }
-}

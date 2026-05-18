@@ -1,7 +1,0 @@
-{
-  "name": "dart-comment",
-  "version": "1.0.0",
-  "bin": {
-    "dart-comment": "./index.js"
-  }
-}
