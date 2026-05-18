@@ -15,7 +15,7 @@
 ## 安裝
 
 ```bash
-claude skill install flutter-project-knowledge-skill.skill
+claude skill install flutter-project-knowledge.skill
 ```
 
 ---
@@ -198,6 +198,64 @@ AsyncResult.none      // 初始
 ```dart
 DioClient.instance.setAuthToken(token)  // 登入後
 DioClient.instance.clearAuthToken()     // 登出後
+```
+
+---
+
+## UI 撰寫規範
+
+### flutter_screenutil 尺寸規範
+
+所有尺寸**必須**使用 extension，禁止裸數字：
+
+| 用途 | 寫法 |
+|------|------|
+| 寬度 | `.w` |
+| 高度 | `.h` |
+| 圓角 | `.r` |
+| 字體大小 | `.sp` |
+
+```dart
+// ❌ 禁止
+Container(width: 100, height: 48, decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)))
+
+// ✅ 正確
+Container(width: 100.w, height: 48.h, decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r)))
+```
+
+---
+
+### 顏色使用規範
+
+**禁止**在 UI 直接使用 `Color(0xff...)`，所有顏色必須定義在 `lib/res/my_colors.dart` 並依相近顏色歸類。
+
+```dart
+// my_colors.dart 結構範例
+class MyColors {
+  // ── 主色系 ──────────────────────────────
+  static const primary = Color(0xff1A73E8);
+
+  // ── 中性色 / 灰階 ────────────────────────
+  static const grey100 = Color(0xffF5F5F5);
+
+  // ── 文字色 ──────────────────────────────
+  static const textPrimary = Color(0xff212121);
+
+  // ── 狀態色 ──────────────────────────────
+  static const success = Color(0xff4CAF50);
+  static const error = Color(0xffF44336);
+
+  // ── 背景色 ──────────────────────────────
+  static const background = Color(0xffFAFAFA);
+}
+```
+
+```dart
+// ❌ 禁止
+TextStyle(color: Color(0xff212121))
+
+// ✅ 正確
+TextStyle(color: MyColors.textPrimary)
 ```
 
 ---

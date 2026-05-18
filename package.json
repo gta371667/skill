@@ -5,14 +5,16 @@
   "main": "index.js",
   "workspaces": [
     "flutter-skill/dart-comment",
-    "flutter-skill/flutter-bloc-skill",
+    "flutter-skill/flutter-bloc",
     "flutter-skill/flutter-freezed-response",
-    "flutter-skill/flutter-project-knowledge"
+    "flutter-skill/flutter-project-knowledge",
+    "flutter-skill/flutter-image-gen"
   ],
   "bin": {
     "dart-comment": "./flutter-skill/dart-comment/dart-comment.skill",
-    "flutter-bloc-skill": "./flutter-skill/flutter-bloc-skill/flutter-bloc.skill",
+    "flutter-bloc-skill": "./flutter-skill/flutter-bloc/flutter-bloc.skill",
     "flutter-freezed-response": "./flutter-skill/flutter-freezed-response/flutter-freezed-response.skill",
-    "flutter-project-knowledge": "./flutter-skill/flutter-project-knowledge/flutter-project-knowledge.skill"
+    "flutter-project-knowledge": "./flutter-skill/flutter-project-knowledge/flutter-project-knowledge.skill",
+    "flutter-image-gen-skill": "./flutter-skill/flutter-image-gen/flutter-image-gen.skill"
   }
 }
