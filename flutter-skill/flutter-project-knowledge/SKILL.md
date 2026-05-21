@@ -1,3 +1,8 @@
+---
+name: flutter-project-knowledge
+description: Claude Code Skill — Flutter 專案通用架構知識庫，適用於所有採用相同技術棧的專案
+---
+
 # flutter-project-knowledge
 
 > Claude Code Skill — Flutter 專案通用架構知識庫，適用於所有採用相同技術棧的專案
@@ -7,8 +12,6 @@
 ## 這個 Skill 做什麼？
 
 將 Flutter 專案的架構規範、資料夾結構、開發流程內建給 Claude Code，讓它在你問「這個檔案要放哪？」、「新增頁面要改哪些地方？」時，直接給出符合規範的答案。
-
-與 `project-architecture-README.md` 不同：那份是給人看的，這份是給 Claude Code 用的。
 
 ---
 
@@ -43,6 +46,7 @@ Claude Code 在以下情況會自動參照此 Skill：
 - 詢問資料夾位置或命名規範
 - 設定路由
 - 使用網路層（DioClient、AsyncResult）
+- 撰寫或審查 import 語句
 - 任何與「專案怎麼運作」相關的問題
 
 ---
@@ -202,6 +206,33 @@ DioClient.instance.clearAuthToken()     // 登出後
 
 ---
 
+## Import 規範
+
+**禁止**使用相對路徑 `../` 跨目錄 import，一律改用完整的 `package:` 路徑。
+**唯一例外**：同層級的檔案才可使用相對路徑。
+
+```dart
+// ❌ 禁止（跨目錄相對路徑）
+import '../../../../bean/bean.dart';
+import '../../../core/network/dio_client.dart';
+
+// ✅ 正確（完整 package 路徑）
+import 'package:your_app/bean/bean.dart';
+import 'package:your_app/core/network/dio_client.dart';
+
+// ✅ 正確（同層級可用相對路徑）
+import 'bean.dart';
+import 'login_response.dart';
+```
+
+| 情況 | 寫法 |
+|------|------|
+| 跨任何目錄 | `package:your_app/...` |
+| 同層級檔案 | `'filename.dart'` |
+| `part of` 指令 | 不受限制 |
+
+---
+
 ## UI 撰寫規範
 
 ### flutter_screenutil 尺寸規範
@@ -279,4 +310,5 @@ flutter gen-l10n
 | `flutter-bloc` | 產生 BLoC 三個檔案 |
 | `flutter-freezed-response` | 產生 API Response 模型 |
 | `dart-comment` | 中文註解規範 |
+| `flutter-image-gen` | 產生圖片路徑管理檔案 |
 | `flutter-project-knowledge` | 本 Skill，通用架構知識庫 |

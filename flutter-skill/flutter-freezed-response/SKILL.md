@@ -1,3 +1,8 @@
+---
+name: flutter-freezed-response
+description: Claude Code Skill — 自動從 API Response JSON 產生 Flutter Freezed 模型檔案
+---
+
 # flutter-freezed-response
 
 > Claude Code Skill — 自動從 API Response JSON 產生 Flutter Freezed 模型檔案
