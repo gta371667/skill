@@ -1,6 +1,6 @@
 ---
 name: dart-style-guide
-description: 
+description: >
   Dart 和 Flutter 的程式碼風格規範，涵蓋命名慣例、class 成員排列順序、
   格式化規則、import 排列、註解風格。當使用者詢問 Dart 程式碼應該怎麼寫、
   變數或 class 的命名、成員排列順序、import 怎麼排、或任何 Dart/Flutter 
@@ -81,6 +81,48 @@ class MyClass extends ParentClass {
   List<Object?> get props => [id, name];
 }
 ```
+
+---
+
+## StatefulWidget State 成員排列順序
+
+```dart
+class _LoginPageState extends State<LoginPage> {
+  // 1. 變數宣告
+  final _formKey = GlobalKey<FormState>();
+  final _accountController = TextEditingController();
+
+  // 2. 生命週期（initState、didChangeDependencies 等）
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // 3. build
+  @override
+  Widget build(BuildContext context) { ... }
+
+  // 4. 私有 Widget 方法（回傳 Widget）
+  Widget _loginField() { ... }
+  Widget _loginButton() { ... }
+  Widget _rememberBox() { ... }
+
+  // 5. 私有行為方法（不回傳 Widget）
+  void _showVersionUpdateDialog(...) { ... }
+  void _handleSubmit() { ... }
+
+  // 6. dispose（永遠最後）
+  @override
+  void dispose() {
+    _accountController.dispose();
+    super.dispose();
+  }
+}
+```
+
+**Widget 方法和行為方法分開的理由：**
+- 回傳 `Widget` 的方法性質上屬於 UI 結構，和行為邏輯不同
+- 分開後新增方法時各自歸位，不會混在一起難以尋找
 
 ---
 
