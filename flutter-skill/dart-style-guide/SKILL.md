@@ -1,16 +1,25 @@
 ---
 name: dart-style-guide
-description: >
-  Dart 和 Flutter 的程式碼風格規範，涵蓋命名慣例、class 成員排列順序、
-  格式化規則、import 排列、註解風格。當使用者詢問 Dart 程式碼應該怎麼寫、
-  變數或 class 的命名、成員排列順序、import 怎麼排、或任何 Dart/Flutter 
-  程式碼風格相關問題時，優先參照此 Skill。
-  也適用於 code review、重構建議、或要求符合 Dart 官方規範的情境。
+description: Claude Code Skill — Dart/Flutter 程式碼風格規範，涵蓋命名、排列順序、import、格式化等
 ---
 
-# Dart Style Guide
+# dart-style-guide
 
-參考來源：[Effective Dart](https://dart.dev/effective-dart) 官方文件。
+> Claude Code Skill — Dart/Flutter 程式碼風格規範，涵蓋命名、排列順序、import、格式化等
+
+---
+
+## 這個 Skill 做什麼？
+
+統一定義 Dart/Flutter 程式碼的撰寫風格，參考 [Effective Dart](https://dart.dev/effective-dart) 官方文件。適用於 code review、重構建議、或任何要求符合 Dart 官方規範的情境。
+
+---
+
+## 安裝
+
+```bash
+claude skill install dart-style-guide-skill.skill
+```
 
 ---
 
@@ -20,7 +29,7 @@ description: >
 |------|------|------|
 | Class、Enum、typedef、型別參數 | `UpperCamelCase` | `LoginResponse`、`AsyncResult` |
 | 變數、函式、參數、named constructor | `lowerCamelCase` | `loginInfo`、`fromJson` |
-| 常數 | `lowerCamelCase`（非 SCREAMING_CAPS） | `defaultTimeout`、`maxRetry` |
+| 常數 | `lowerCamelCase`（非 SCREAMING_CAPS）| `defaultTimeout`、`maxRetry` |
 | 檔案、資料夾 | `snake_case` | `login_page.dart`、`api_service.dart` |
 | Library、package | `snake_case` | `flutter_project_base` |
 | Private 成員 | 前綴 `_` | `_loginInfoSubject`、`_request` |
@@ -76,53 +85,8 @@ class MyClass extends ParentClass {
   // 8. override 方法
   @override
   String toString() => 'MyClass(id: $id, name: $name)';
-
-  @override
-  List<Object?> get props => [id, name];
 }
 ```
-
----
-
-## StatefulWidget State 成員排列順序
-
-```dart
-class _LoginPageState extends State<LoginPage> {
-  // 1. 變數宣告
-  final _formKey = GlobalKey<FormState>();
-  final _accountController = TextEditingController();
-
-  // 2. 生命週期（initState、didChangeDependencies 等）
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // 3. build
-  @override
-  Widget build(BuildContext context) { ... }
-
-  // 4. 私有 Widget 方法（回傳 Widget）
-  Widget _loginField() { ... }
-  Widget _loginButton() { ... }
-  Widget _rememberBox() { ... }
-
-  // 5. 私有行為方法（不回傳 Widget）
-  void _showVersionUpdateDialog(...) { ... }
-  void _handleSubmit() { ... }
-
-  // 6. dispose（永遠最後）
-  @override
-  void dispose() {
-    _accountController.dispose();
-    super.dispose();
-  }
-}
-```
-
-**Widget 方法和行為方法分開的理由：**
-- 回傳 `Widget` 的方法性質上屬於 UI 結構，和行為邏輯不同
-- 分開後新增方法時各自歸位，不會混在一起難以尋找
 
 ---
 
@@ -137,14 +101,31 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// 3. 專案內部檔案（相對路徑或 package 路徑）
-import 'package:flutter_project_base/data/model/login_response.dart';
+// 3. 專案內部檔案 — 一律使用 package 路徑
+import 'package:flutter_project_base/bean/bean.dart';
 import 'package:flutter_project_base/res/my_colors.dart';
+
+// 4. 同層級檔案 — 才可使用相對路徑
+import 'login_response.dart';
 ```
 
 - 每個群組之間空一行
 - 每個群組內按字母排序
-- 不混用相對路徑和 package 路徑，統一用 package 路徑
+- **專案內部跨目錄 import 一律使用 `package:` 路徑，禁止使用 `../` 相對路徑**
+- 唯一例外：同層級檔案可使用相對路徑
+
+```dart
+// ❌ 禁止跨目錄相對路徑
+import '../../../res/my_colors.dart';
+import '../../../../bean/bean.dart';
+
+// ✅ 正確
+import 'package:flutter_project_base/res/my_colors.dart';
+import 'package:flutter_project_base/bean/bean.dart';
+
+// ✅ 同層級才可相對路徑
+import 'login_response.dart';
+```
 
 ---
 
@@ -155,6 +136,7 @@ import 'package:flutter_project_base/res/my_colors.dart';
 - 使用 `dart format` 自動格式化
 
 ### 大括號
+
 ```dart
 // ✅ 同行開括號
 if (condition) {
@@ -172,6 +154,7 @@ if (condition)
 ```
 
 ### 空行
+
 ```dart
 // class 成員之間空一行
 class MyClass {
@@ -186,6 +169,7 @@ class MyClass {
 ```
 
 ### Trailing comma
+
 ```dart
 // ✅ 多行參數加 trailing comma，dart format 才會正確格式化
 const MyWidget(
@@ -275,7 +259,7 @@ final list = List<String>();
 ## 函式
 
 ```dart
-// ✅ 單行函式用 => 
+// ✅ 單行函式用 =>
 String get fullName => '$firstName $lastName';
 bool isValid(String value) => value.isNotEmpty;
 
@@ -326,4 +310,16 @@ String? getName() {
 try {
   doSomething();
 } catch (e) {} // 至少要 log 錯誤
+```
+
+---
+
+## 常用指令
+
+```bash
+# 格式化整個專案
+dart format .
+
+# 檢查風格問題
+dart analyze
 ```

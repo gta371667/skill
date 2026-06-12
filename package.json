@@ -1,20 +1,24 @@
 {
   "name": "gta371667-skills",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Flutter and Dart CLI Skills Collection",
   "main": "index.js",
   "workspaces": [
     "flutter-skill/dart-comment",
-    "flutter-skill/flutter-bloc",
-    "flutter-skill/flutter-freezed-response",
+    "flutter-skill/dart-style-guide",
+    "flutter-skill/flutter-bloc-skill",
+    "flutter-skill/flutter-image-gen",
     "flutter-skill/flutter-project-knowledge",
-    "flutter-skill/flutter-image-gen"
+    "flutter-skill/flutter-response-model",
+    "flutter-skill/git-readonly-skill"
   ],
   "bin": {
-    "dart-comment": "./flutter-skill/dart-comment/dart-comment.skill",
-    "flutter-bloc-skill": "./flutter-skill/flutter-bloc/flutter-bloc.skill",
-    "flutter-freezed-response": "./flutter-skill/flutter-freezed-response/flutter-freezed-response.skill",
+    "dart-comment": "./flutter-skill/dart-comment/dart-comment-skill.skill",
+    "dart-style-guide": "./flutter-skill/dart-style-guide/dart-style-guide.skill",
+    "flutter-bloc-skill": "./flutter-skill/flutter-bloc-skill/flutter-bloc-skill.skill",
+    "flutter-image-gen-skill": "./flutter-skill/flutter-image-gen/flutter-image-gen.skill",
     "flutter-project-knowledge": "./flutter-skill/flutter-project-knowledge/flutter-project-knowledge.skill",
-    "flutter-image-gen-skill": "./flutter-skill/flutter-image-gen/flutter-image-gen.skill"
+    "flutter-response-model": "./flutter-skill/flutter-response-model/flutter-response-model.skill",
+    "git-readonly-skill": "./flutter-skill/git-readonly-skill/git-readonly-skill.skill"
   }
 }
