@@ -1,5 +1,5 @@
 ---
-name: flutter-image-gen-skill
+name: flutter-image-gen
 description: Claude Code Skill — 自動掃描 assets/images/ 產生 Flutter 圖片路徑管理檔案
 ---
 

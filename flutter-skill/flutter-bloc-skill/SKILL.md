@@ -1,5 +1,5 @@
 ---
-name: flutter-bloc
+name: flutter-bloc-skill
 description: >
   Generates or modifies Flutter BLoC files (bloc, event, state) following project conventions.
   Use this skill whenever the user wants to: create a new BLoC for a page, migrate page logic

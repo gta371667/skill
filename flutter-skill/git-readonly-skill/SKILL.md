@@ -1,5 +1,5 @@
 ---
-name: git-readonly
+name: git-readonly-skill
 description: Claude Code Skill — 禁止所有會修改 git 狀態的操作，只允許閱讀與查詢
 ---
 
