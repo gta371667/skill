@@ -9,6 +9,7 @@
 | Skill | 功能 |
 |-------|------|
 | `flutter-bloc-skill` | 自動產生 BLoC 三檔案（bloc / event / state） |
+| `flutter-provider` | 自動產生 Provider 兩檔案（notifier / state），並支援 BLoC → Provider 遷移 |
 | `flutter-response-model` | 從 API Response JSON 產生 Equatable model |
 | `dart-comment` | 統一 Dart/Flutter 中文註解規範 |
 | `dart-style-guide` | Dart/Flutter 程式碼風格規範（命名、排列、import、格式化） |
@@ -57,7 +58,7 @@ cp -r /path/to/flutter-skill/flutter-bloc-skill .claude/skills/
 
 ## 開發說明
 
-每個 skill 目錄下的 `.skill` 檔是 zip 打包檔，**安裝流程不會用到**，僅供保留原始打包結果。實際被 Claude Code 讀取的是 `SKILL.md` 以及同層的 `references/`、`assets/`。
+部分 skill 目錄下的 `.skill` 檔是早期的 zip 打包檔，**安裝流程不會用到**，僅供保留原始打包結果（新 skill 不再產生）。實際被 Claude Code 讀取的是 `SKILL.md` 以及同層的 `references/`、`assets/`。
 
 `SKILL.md` 的 frontmatter `name` 必須與所在目錄名一致。
 
@@ -65,4 +66,4 @@ cp -r /path/to/flutter-skill/flutter-bloc-skill .claude/skills/
 
 ## 版本
 
-`v1.0.7`
+`v1.0.8`

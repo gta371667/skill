@@ -1,10 +1,29 @@
 {
   "name": "gta371667-skills",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Flutter and Dart CLI Skills Collection",
-  "main": "index.js",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "claude-skill",
+    "flutter",
+    "dart",
+    "bloc",
+    "provider"
+  ],
+  "homepage": "https://github.com/gta371667/skill#readme",
+  "bugs": {
+    "url": "https://github.com/gta371667/skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gta371667/skill.git"
+  },
+  "license": "MIT",
+  "author": "haokuo <gta371667@gmail.com>",
   "files": [
     "flutter-skill",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ]
 }
