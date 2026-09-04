@@ -50,6 +50,8 @@ void FetchUserData() {}
 
 ## Class 成員排列順序
 
+### 一般類別
+
 ```dart
 class MyClass extends ParentClass {
   // 1. 靜態常數
@@ -87,6 +89,68 @@ class MyClass extends ParentClass {
   String toString() => 'MyClass(id: $id, name: $name)';
 }
 ```
+
+### StatefulWidget 的 State 類別
+
+`State` 有生命週期，**改用生命週期順序排列**，不套用上面那套——否則 `build()`
+會被「override 方法墊底」擠到檔案最下面。由上到下：
+
+```dart
+class _MyPageState extends State<MyPage> {
+  // 1. 宣告的變數或常數
+  static const double _padding = 16;
+  final TextEditingController _controller = TextEditingController();
+
+  // 2. initState()
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // 3. didChangeDependencies()（有使用到才寫）
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  // 4. didUpdateWidget()（有使用到才寫）
+  @override
+  void didUpdateWidget(covariant MyPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
+  // 5. build()
+  @override
+  Widget build(BuildContext context) => _buildBody();
+
+  // 6. 其餘拆出的 widget 方法
+  Widget _buildBody() => const SizedBox();
+
+  // 7. 呼叫方法（事件處理、邏輯）
+  void _onSubmitPressed() {}
+
+  // 8. dispose()
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+```
+
+**為什麼 `build()` 要排在拆出的 widget 方法之前**：widget 檔案最常被問的是
+「這頁長什麼樣、由哪些塊組成」，`build()` 就是那張目錄；排在後面等於把目錄
+放到書末。
+
+**`didChangeDependencies` 排在 `didUpdateWidget` 之前**是照實際執行順序：
+首次建立走 `initState → didChangeDependencies → build`，父層重建才走
+`didUpdateWidget → build`。
+
+沒有用到的生命週期方法**不要留空實作**——只有 `super` 呼叫加一行 IDE 產生的
+`// TODO: implement` 是雜訊，需要時再加。
+
+> 這套排序**只適用於 `State` 類別**。BLoC、repository、model 這些沒有生命週期，
+> 仍照上面〈一般類別〉的順序排。
 
 ---
 

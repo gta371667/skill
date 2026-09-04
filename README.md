@@ -66,4 +66,4 @@ cp -r /path/to/flutter-skill/flutter-bloc-skill .claude/skills/
 
 ## 版本
 
-`v1.0.8`
+`v1.0.9`
